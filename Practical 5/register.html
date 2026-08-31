@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Student Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="notificationBanner" class="notification-banner">
+        Welcome to the 🎓 Student Hub! New courses are available.
+        <button id="closeBanner" class="close-btn">&times;</button>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🎓 Student Hub</a>
+            <button id="hamburger" class="hamburger">☰</button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </nav>
+            <button id="themeToggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-card">
+            <h2>Student Registration</h2>
+            <p>Create an account to access the Student Hub portal.</p>
+            <br>
+            <form id="registrationForm" novalidate>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name">
+                    <span class="error-message" id="nameError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                    <span class="error-message" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Enter 10-digit mobile number">
+                    <span class="error-message" id="mobileError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a strong password">
+                    <div class="password-strength">
+                        <div class="strength-bar-container">
+                            <div class="strength-bar" id="strengthBar"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText"></span>
+                    </div>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+                    <span class="error-message" id="confirmPasswordError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <select id="course" name="course">
+                        <option value="">Select Course</option>
+                        <option value="B.Tech CE">B.Tech CE</option>
+                        <option value="B.Tech IT">B.Tech IT</option>
+                        <option value="B.Tech EC">B.Tech EC</option>
+                        <option value="B.Tech ME">B.Tech ME</option>
+                        <option value="BCA">BCA</option>
+                        <option value="MCA">MCA</option>
+                    </select>
+                    <span class="error-message" id="courseError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <select id="year" name="year">
+                        <option value="">Select Year</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                    </select>
+                    <span class="error-message" id="yearError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div style="margin-top: 5px;">
+                        <input type="radio" id="genderMale" name="gender" value="Male"> <label style="display:inline; font-weight:normal;" for="genderMale">Male</label> &nbsp;&nbsp;
+                        <input type="radio" id="genderFemale" name="gender" value="Female"> <label style="display:inline; font-weight:normal;" for="genderFemale">Female</label> &nbsp;&nbsp;
+                        <input type="radio" id="genderOther" name="gender" value="Other"> <label style="display:inline; font-weight:normal;" for="genderOther">Other</label>
+                    </div>
+                    <span class="error-message" id="genderError"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="terms" name="terms"> <label style="display:inline; font-weight:normal;" for="terms">I agree to Terms and Conditions</label>
+                    <br>
+                    <span class="error-message" id="termsError"></span>
+                </div>
+
+                <button type="submit" class="btn-primary">Register</button>
+            </form>
+            <p style="margin-top: 1rem; text-align: center;">Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 style="color: var(--success-color);">Success!</h2>
+            <p id="modalMessage">Registration Successful! You can now login.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Student Hub. CHARUSAT University.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="validate.js"></script>
+</body>
+</html>
