@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - 🎓 Student Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🎓 Student Hub</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="events.html">Events</a>
+            <a href="attendance.html">Attendance</a>
+            <a href="fees.html">Fees</a>
+            <a href="assignment.html">Assignments</a>
+            <a href="announcements.html">Announcements</a>
+            <a href="contact.html" class="active">Contact</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <h1>Contact Us</h1>
+        
+        <div class="flex-row">
+            <section class="flex-col">
+                <h2>Get in Touch</h2>
+                <p>If you have any academic inquiries or face issues with the portal, please contact the administration office.</p>
+                
+                <h3>University Address</h3>
+                <p>CHARUSAT Campus<br>
+                   Changa, Anand, Gujarat 388421</p>
+                
+                <h3>Contact Information</h3>
+                <p><strong>Phone:</strong> +91 2697 265011<br>
+                   <strong>Email:</strong> info@charusat.ac.in</p>
+            </section>
+            
+            <section class="flex-col">
+                <div class="form-container" style="margin: 0; max-width: 100%;">
+                    <h2>Send a Message</h2>
+                    <form action="#" method="GET">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Student Hub - CHARUSAT University</p>
+    </footer>
+</body>
+</html>

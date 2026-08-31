@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - 🎓 Student Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🎓 Student Hub</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="events.html">Events</a>
+            <a href="attendance.html">Attendance</a>
+            <a href="fees.html">Fees</a>
+            <a href="assignment.html">Assignments</a>
+            <a href="announcements.html">Announcements</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <h1>Student Dashboard</h1>
+        <p>Welcome back, John Doe! Here is an overview of your academic status.</p>
+        
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <h3>Total Subjects</h3>
+                <div class="stat-value">5</div>
+                <p>Registered this semester</p>
+            </div>
+            <div class="stat-card">
+                <h3>Attendance</h3>
+                <div class="stat-value">91%</div>
+                <p>Overall average</p>
+            </div>
+            <div class="stat-card">
+                <h3>Assignments Due</h3>
+                <div class="stat-value">2</div>
+                <p>Within next 7 days</p>
+            </div>
+            <div class="stat-card">
+                <h3>Fee Status</h3>
+                <div class="stat-value">Paid</div>
+                <p>Semester 3 Fees</p>
+            </div>
+        </div>
+
+        <div class="flex-row">
+            <section class="flex-col">
+                <h2>Quick Links</h2>
+                <div class="grid-cards" style="grid-template-columns: repeat(2, 1fr);">
+                    <a href="attendance.html" class="btn" style="background-color: var(--primary);">View Attendance</a>
+                    <a href="assignment.html" class="btn" style="background-color: var(--primary);">Submit Assignments</a>
+                    <a href="fees.html" class="btn" style="background-color: var(--primary);">Fee Details</a>
+                    <a href="events.html" class="btn" style="background-color: var(--primary);">College Events</a>
+                </div>
+            </section>
+
+            <section class="flex-col">
+                <h2>Recent Activity</h2>
+                <div class="card">
+                    <ul>
+                        <li style="margin-bottom: 0.5rem;"><strong>Assignment Graded:</strong> Web Dev Practical 2 (Grade: A)</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Fee Receipt Generated:</strong> Semester 3 Tuition Paid</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Attendance Updated:</strong> Mathematics Lab</li>
+                        <li><strong>Announcement:</strong> Mid-semester exam schedule released</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Student Hub - CHARUSAT University</p>
+    </footer>
+</body>
+</html>
