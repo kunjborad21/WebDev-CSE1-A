@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub - Announcements</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .date { font-size: 0.9rem; color: #666; margin-bottom: 0.5rem; display: block; }
+        [data-theme='dark'] .date { color: #aaa; }
+    </style>
+</head>
+<body>
+    <div class="notification-banner">
+        Welcome to Student Hub! Fall semester registration is now open.
+        <button class="banner-close">&times;</button>
+    </div>
+
+    <header>
+        <a href="index.html" class="brand">🎓 Student Hub</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="fees.html">Fees</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Announcements</h1>
+        <div class="card-grid">
+            <div class="card">
+                <span class="date">Aug 01, 2026</span>
+                <h3>Semester Exam Schedule Released</h3>
+                <p>The schedule for the Mid-Semester examinations has been released. Check the portal for your branch schedule.</p>
+            </div>
+            <div class="card">
+                <span class="date">Aug 05, 2026</span>
+                <h3>Assignment Submission Guidelines</h3>
+                <p>All students must ensure their assignments are uploaded in PDF format only. Maximum file size is 10MB.</p>
+            </div>
+            <div class="card">
+                <span class="date">Aug 10, 2026</span>
+                <h3>Independence Day Celebration</h3>
+                <p>Join us on campus at 8:00 AM on August 15th for the flag hoisting ceremony followed by cultural events.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CHARUSAT University - Student Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

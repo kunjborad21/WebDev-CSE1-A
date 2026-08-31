@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub - Fees</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .table-container { overflow-x: auto; margin-top: 2rem; }
+        table { width: 100%; border-collapse: collapse; background: var(--white); }
+        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--primary); color: #fff; }
+        tr:hover { background: var(--gray); color: var(--text); }
+        .badge { padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem; color: #fff; }
+        .badge.paid { background: #28a745; }
+        .badge.pending { background: #ffc107; color: #000; }
+        [data-theme='dark'] tr:hover { color: #000; }
+    </style>
+</head>
+<body>
+    <div class="notification-banner">
+        Welcome to Student Hub! Fall semester registration is now open.
+        <button class="banner-close">&times;</button>
+    </div>
+
+    <header>
+        <a href="index.html" class="brand">🎓 Student Hub</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="fees.html">Fees</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Fee Details</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Semester</th>
+                        <th>Amount (INR)</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Receipt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Semester 3</td>
+                        <td>₹65,000</td>
+                        <td>July 31, 2026</td>
+                        <td><span class="badge paid">Paid</span></td>
+                        <td><button class="btn" style="padding: 0.4rem 0.8rem;">Download</button></td>
+                    </tr>
+                    <tr>
+                        <td>Semester 4</td>
+                        <td>₹65,000</td>
+                        <td>Dec 31, 2026</td>
+                        <td><span class="badge pending">Pending</span></td>
+                        <td><button class="btn" style="padding: 0.4rem 0.8rem; background: var(--primary);">Pay Now</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CHARUSAT University - Student Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub - Assignments</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem; color: #fff; background: var(--accent); margin-bottom: 0.5rem; }
+        .due-date { font-weight: bold; color: #d32f2f; margin: 1rem 0; }
+        [data-theme='dark'] .due-date { color: #ff5252; }
+    </style>
+</head>
+<body>
+    <div class="notification-banner">
+        Welcome to Student Hub! Fall semester registration is now open.
+        <button class="banner-close">&times;</button>
+    </div>
+
+    <header>
+        <a href="index.html" class="brand">🎓 Student Hub</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="fees.html">Fees</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>My Assignments</h1>
+        <div class="card-grid">
+            <div class="card">
+                <span class="badge">Web Development</span>
+                <h3>Project Wireframe</h3>
+                <p>Create a wireframe for the final semester project using HTML/CSS.</p>
+                <div class="due-date">Due: 10 Aug 2026</div>
+                <button class="btn">Submit Assignment</button>
+            </div>
+            <div class="card">
+                <span class="badge">Data Structures</span>
+                <h3>Binary Search Trees</h3>
+                <p>Implement a BST in C++ with insert, delete, and search operations.</p>
+                <div class="due-date">Due: 15 Aug 2026</div>
+                <button class="btn">Submit Assignment</button>
+            </div>
+            <div class="card">
+                <span class="badge" style="background: #28a745">Mathematics</span>
+                <h3>Calculus Assignment 1</h3>
+                <p>Solve the given list of integration problems.</p>
+                <div class="due-date" style="color: #28a745">Submitted</div>
+                <button class="btn" style="background: var(--gray); color: var(--text)" disabled>View Submission</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CHARUSAT University - Student Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

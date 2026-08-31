@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .stat-card { text-align: center; }
+        .stat-value { font-size: 2.5rem; font-weight: bold; color: var(--primary); margin: 1rem 0; }
+        [data-theme='dark'] .stat-value { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="notification-banner">
+        Welcome to Student Hub! Fall semester registration is now open.
+        <button class="banner-close">&times;</button>
+    </div>
+
+    <header>
+        <a href="index.html" class="brand">🎓 Student Hub</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="fees.html">Fees</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Student Dashboard</h1>
+        <p>Welcome back, Student! Here's a quick overview of your profile.</p>
+
+        <div class="card-grid">
+            <div class="card stat-card">
+                <h3>Total Subjects</h3>
+                <div class="stat-value">5</div>
+            </div>
+            <div class="card stat-card">
+                <h3>Attendance</h3>
+                <div class="stat-value">91%</div>
+            </div>
+            <div class="card stat-card">
+                <h3>Assignments Due</h3>
+                <div class="stat-value">2</div>
+            </div>
+            <div class="card stat-card">
+                <h3>Fee Status</h3>
+                <div class="stat-value" style="color: #28a745">Paid</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem;">
+            <h2>Quick Links</h2>
+            <div class="card-grid" style="margin-top: 1rem;">
+                <a href="attendance.html" class="card" style="text-align:center; display:block;">📊 View Attendance</a>
+                <a href="assignments.html" class="card" style="text-align:center; display:block;">📝 Submit Assignments</a>
+                <a href="fees.html" class="card" style="text-align:center; display:block;">💳 Pay Fees</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CHARUSAT University - Student Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-card { max-width: 400px; margin: 3rem auto; }
+        .auth-links { margin-top: 1rem; text-align: center; font-size: 0.9rem; }
+        .auth-links a { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="notification-banner">
+        Welcome to Student Hub! Fall semester registration is now open.
+        <button class="banner-close">&times;</button>
+    </div>
+
+    <header>
+        <a href="index.html" class="brand">🎓 Student Hub</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="fees.html">Fees</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="card auth-card">
+            <h2 style="text-align:center; margin-bottom: 1.5rem;">Student Login</h2>
+            <form action="#">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="student@charusat.edu.in">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn" style="width:100%">Login</button>
+            </form>
+            <div class="auth-links">
+                <a href="forgotpassword.html">Forgot Password?</a><br><br>
+                Don't have an account? <a href="register.html">Register Here</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CHARUSAT University - Student Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub - Events</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .event-tag { display: inline-block; padding: 0.2rem 0.5rem; background: var(--gray); border-radius: 4px; font-size: 0.8rem; margin-bottom: 0.5rem; color: var(--text); }
+        .event-date { font-weight: bold; color: var(--accent); margin: 0.5rem 0; }
+    </style>
+</head>
+<body>
+    <div class="notification-banner">
+        Welcome to Student Hub! Fall semester registration is now open.
+        <button class="banner-close">&times;</button>
+    </div>
+
+    <header>
+        <a href="index.html" class="brand">🎓 Student Hub</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="fees.html">Fees</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Upcoming Events</h1>
+        <div class="card-grid">
+            <div class="card">
+                <span class="event-tag">Technical</span>
+                <h3>TechFest 2026</h3>
+                <p class="event-date">Oct 15 - Oct 17, 2026</p>
+                <p>Annual technical festival featuring hackathons, robotics, and coding competitions.</p>
+                <button class="btn" style="margin-top: 1rem;">Register Now</button>
+            </div>
+            <div class="card">
+                <span class="event-tag">Competition</span>
+                <h3>Coding Contest</h3>
+                <p class="event-date">Sept 10, 2026</p>
+                <p>Inter-college competitive programming contest on LeetCode style problems.</p>
+                <button class="btn" style="margin-top: 1rem;">Register Now</button>
+            </div>
+            <div class="card">
+                <span class="event-tag">Workshop</span>
+                <h3>Workshop on AI</h3>
+                <p class="event-date">Aug 25, 2026</p>
+                <p>A hands-on workshop covering basics of Neural Networks and ChatGPT API integrations.</p>
+                <button class="btn" style="margin-top: 1rem;">Register Now</button>
+            </div>
+            <div class="card">
+                <span class="event-tag">Sports</span>
+                <h3>Sports Day</h3>
+                <p class="event-date">Dec 01, 2026</p>
+                <p>Annual sports meet featuring cricket, football, badminton and athletics.</p>
+                <button class="btn" style="margin-top: 1rem;">Register Now</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CHARUSAT University - Student Hub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

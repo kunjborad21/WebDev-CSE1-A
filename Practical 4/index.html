@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Notification Banner -->
+    <div class="notification-banner">
+        Welcome to Student Hub! Fall semester registration is now open.
+        <button class="banner-close">&times;</button>
+    </div>
+
+    <!-- Header & Nav -->
+    <header>
+        <a href="index.html" class="brand">🎓 Student Hub</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="attendance.html">Attendance</a></li>
+                <li><a href="fees.html">Fees</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Welcome to Student Hub</h1>
+        <p>Your one-stop portal for all university needs.</p>
+
+        <!-- Slider -->
+        <section class="slider-container">
+            <div class="slider">
+                <div class="slide">
+                    <h2>Track Attendance</h2>
+                    <p>Keep a real-time track of your subject-wise attendance.</p>
+                </div>
+                <div class="slide">
+                    <h2>Pay Fees Easily</h2>
+                    <p>Securely pay your semester fees and download receipts.</p>
+                </div>
+                <div class="slide">
+                    <h2>Submit Assignments</h2>
+                    <p>Never miss a deadline. Upload assignments directly.</p>
+                </div>
+            </div>
+            <button class="slider-btn prev-btn">&#10094;</button>
+            <button class="slider-btn next-btn">&#10095;</button>
+        </section>
+
+        <section class="card-grid">
+            <div class="card">
+                <h3>Latest Announcements</h3>
+                <p>Check out the recent updates from the administration.</p>
+                <button class="btn" id="open-modal">Show Welcome Message</button>
+            </div>
+            <div class="card">
+                <h3>Upcoming Events</h3>
+                <p>TechFest 2026 registrations are live now!</p>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal-overlay">
+            <div class="modal-box">
+                <button class="modal-close">&times;</button>
+                <h2>Welcome to Student Hub!</h2>
+                <p>We're glad to have you here. Please explore the portal to access your academic information.</p>
+                <button class="btn modal-close-btn" style="margin-top:1rem" onclick="document.querySelector('.modal-overlay').classList.remove('show')">Got it</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CHARUSAT University - Student Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Main JS script -->
+    <script src="script.js"></script>
+</body>
+</html>
