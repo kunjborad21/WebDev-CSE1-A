@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignments</title>
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background-color: #f2f2f2;
+  color: #222;
+}
+
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #eee;
+}
+
+body.dark-theme main {
+  background-color: #2b2b2b;
+}
+
+body.dark-theme article {
+  background-color: #3a3a3a;
+}
+
+body.dark-theme .modal-box {
+  background-color: #3a3a3a;
+  color: #eee;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#hamburger {
+  display: none;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+#themeToggle {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a {
+  color: white;
+  margin-right: 10px;
+}
+
+main {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+#assignmentCount {
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+article {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 15px;
+  flex: 1 1 220px;
+}
+
+article button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-box {
+  background-color: white;
+  padding: 25px;
+  border-radius: 6px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-box button {
+  margin-top: 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+  main {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+  .card-row {
+    flex-direction: column;
+  }
+
+  #hamburger {
+    display: inline-block;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  nav.nav-open {
+    display: flex;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-left">
+<button id="hamburger">&#9776;</button>
+<h1>Assignments</h1>
+</div>
+<button id="themeToggle">Dark Mode</button>
+</header>
+
+<nav id="navMenu">
+<a href="index.html">Home</a>
+</nav>
+
+<main>
+<p id="assignmentCount"></p>
+
+<div class="card-row">
+<article>
+<h2>Web Development</h2>
+<p>Submission Date : 10 August</p>
+<button class="detailsBtn" data-title="Web Development" data-detail="Build a responsive Student Hub portal using HTML, CSS, and JavaScript. Submit the source code as a ZIP file.">View Details</button>
+</article>
+
+<article>
+<h2>DSA</h2>
+<p>Submission Date : 15 August</p>
+<button class="detailsBtn" data-title="DSA" data-detail="Solve the given 10 array and linked-list problems and submit well-commented code with sample outputs.">View Details</button>
+</article>
+</div>
+</main>
+
+<div class="modal-overlay" id="detailsModal">
+<div class="modal-box">
+<h2 id="modalTitle"></h2>
+<p id="modalDetail"></p>
+<button id="closeModalBtn">Close</button>
+</div>
+</div>
+
+<footer>
+<hr>
+<p>Student Hub</p>
+</footer>
+
+<script>
+/* ---------- Hamburger menu ---------- */
+let hamburger = document.getElementById("hamburger");
+let navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", function() {
+  navMenu.classList.toggle("nav-open");
+});
+
+/* ---------- Light / Dark theme switcher (remembered using localStorage) ---------- */
+let themeBtn = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-theme");
+  themeBtn.textContent = "Light Mode";
+}
+
+themeBtn.addEventListener("click", function() {
+  document.body.classList.toggle("dark-theme");
+
+  if (document.body.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+    themeBtn.textContent = "Light Mode";
+  } else {
+    localStorage.setItem("theme", "light");
+    themeBtn.textContent = "Dark Mode";
+  }
+});
+
+/* ---------- Per-card modal popup ---------- */
+let modal = document.getElementById("detailsModal");
+let modalTitle = document.getElementById("modalTitle");
+let modalDetail = document.getElementById("modalDetail");
+let closeModalBtn = document.getElementById("closeModalBtn");
+let detailButtons = document.querySelectorAll(".detailsBtn");
+
+// Every "View Details" button gets its own click listener
+detailButtons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    // data-title and data-detail come from the button's HTML attributes
+    modalTitle.textContent = button.getAttribute("data-title");
+    modalDetail.textContent = button.getAttribute("data-detail");
+    modal.style.display = "flex";
+  });
+});
+
+closeModalBtn.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+modal.addEventListener("click", function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+/* ---------- Assignment counter ---------- */
+let assignments = document.querySelectorAll("article");
+document.getElementById("assignmentCount").textContent =
+  "Total Assignments: " + assignments.length;
+</script>
+
+</body>
+</html>

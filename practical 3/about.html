@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About</title>
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background-color: #f2f2f2;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+}
+
+/* nav uses flexbox so the links wrap on small screens */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a {
+  color: white;
+  margin-right: 10px;
+}
+
+main {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+/* Tablet screens */
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+  main {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>About Student Hub</h1>
+<nav>
+<a href="index.html">Home</a>
+</nav>
+</header>
+
+<main>
+<section>
+<p>
+Student Hub is a student management portal developed
+to manage academic information.
+</p>
+</section>
+</main>
+
+<footer>
+<hr>
+<p>Student Hub</p>
+</footer>
+
+</body>
+</html>

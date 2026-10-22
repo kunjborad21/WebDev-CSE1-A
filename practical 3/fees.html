@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fees</title>
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background-color: #f2f2f2;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+}
+
+/* nav uses flexbox so the links wrap on small screens */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a {
+  color: white;
+  margin-right: 10px;
+}
+
+main {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+/* lets the table scroll sideways on narrow screens instead of breaking layout */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Tablet screens */
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+  main {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+  th, td {
+    font-size: 13px;
+    padding: 6px;
+  }
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+th {
+  background-color: #333;
+  color: white;
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Fees</h1>
+<nav>
+<a href="index.html">Home</a>
+</nav>
+</header>
+
+<main>
+<div class="table-wrapper">
+<table>
+<tr>
+<th>Semester</th>
+<th>Status</th>
+</tr>
+<tr>
+<td>Semester 3</td>
+<td>Paid</td>
+</tr>
+</table>
+</div>
+</main>
+
+<footer>
+<hr>
+<p>Student Hub</p>
+</footer>
+
+</body>
+</html>
