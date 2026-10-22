@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance</title>
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background-color: #f2f2f2;
+  color: #222;
+}
+
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #eee;
+}
+
+body.dark-theme main {
+  background-color: #2b2b2b;
+}
+
+body.dark-theme .modal-box {
+  background-color: #3a3a3a;
+  color: #eee;
+}
+
+body.dark-theme th, body.dark-theme td {
+  border-color: #555;
+}
+
+body.dark-theme select,
+body.dark-theme input[type="text"] {
+  background-color: #3a3a3a;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#hamburger {
+  display: none;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+#themeToggle {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a {
+  color: white;
+  margin-right: 10px;
+}
+
+main {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.controls input[type="text"],
+.controls select {
+  padding: 6px;
+  font-size: 14px;
+}
+
+#searchBox {
+  flex: 1 1 200px;
+}
+
+#loadingMsg, #errorMsg, #noResultsMsg {
+  padding: 10px 0;
+}
+
+#errorMsg {
+  color: red;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+th {
+  background-color: #333;
+  color: white;
+}
+
+#avgResult {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#openModalBtn {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-box {
+  background-color: white;
+  padding: 25px;
+  border-radius: 6px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-box button {
+  margin-top: 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#pagination button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#pagination button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+  main {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+  th, td {
+    font-size: 13px;
+    padding: 6px;
+  }
+
+  #hamburger {
+    display: inline-block;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  nav.nav-open {
+    display: flex;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-left">
+<button id="hamburger">&#9776;</button>
+<h1>Attendance</h1>
+</div>
+<button id="themeToggle">Dark Mode</button>
+</header>
+
+<nav id="navMenu">
+<a href="index.html">Home</a>
+</nav>
+
+<main>
+
+<div class="controls">
+  <input type="text" id="searchBox" placeholder="Search subject...">
+
+  <select id="typeFilter">
+    <option value="all">All Types</option>
+    <option value="Theory">Theory</option>
+    <option value="Lab">Lab</option>
+  </select>
+
+  <select id="rangeFilter">
+    <option value="all">All Attendance</option>
+    <option value="above75">75% and above</option>
+    <option value="below75">Below 75%</option>
+  </select>
+
+  <select id="sortBy">
+    <option value="subjectAZ">Subject: A-Z</option>
+    <option value="attendanceHigh">Attendance: High to Low</option>
+    <option value="attendanceLow">Attendance: Low to High</option>
+  </select>
+</div>
+
+<p id="loadingMsg">Loading attendance...</p>
+<p id="errorMsg" style="display:none;"></p>
+<p id="noResultsMsg" style="display:none;">No subjects match your search/filter.</p>
+
+<div class="table-wrapper">
+<table id="attendanceTable" style="display:none;">
+<tr>
+<th>Subject</th>
+<th>Type</th>
+<th>Attendance</th>
+</tr>
+<tbody id="attendanceBody"></tbody>
+</table>
+</div>
+
+<div id="pagination" style="display:none;">
+  <button id="prevBtn">Previous</button>
+  <span id="pageInfo"></span>
+  <button id="nextBtn">Next</button>
+</div>
+
+<p id="avgResult"></p>
+
+<button id="openModalBtn">Attendance Policy</button>
+</main>
+
+<div class="modal-overlay" id="infoModal">
+<div class="modal-box">
+<h2>Attendance Policy</h2>
+<p>Students must maintain at least 75% attendance in every subject to be eligible to sit for the semester exam.</p>
+<button id="closeModalBtn">Close</button>
+</div>
+</div>
+
+<footer>
+<hr>
+<p>Student Hub</p>
+</footer>
+
+<script>
+let hamburger = document.getElementById("hamburger");
+let navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", function() {
+  navMenu.classList.toggle("nav-open");
+});
+
+let themeBtn = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-theme");
+  themeBtn.textContent = "Light Mode";
+}
+
+themeBtn.addEventListener("click", function() {
+  document.body.classList.toggle("dark-theme");
+
+  if (document.body.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+    themeBtn.textContent = "Light Mode";
+  } else {
+    localStorage.setItem("theme", "light");
+    themeBtn.textContent = "Dark Mode";
+  }
+});
+
+let modal = document.getElementById("infoModal");
+let openModalBtn = document.getElementById("openModalBtn");
+let closeModalBtn = document.getElementById("closeModalBtn");
+
+openModalBtn.addEventListener("click", function() {
+  modal.style.display = "flex";
+});
+
+closeModalBtn.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+modal.addEventListener("click", function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+let allAttendance = [];
+let currentPage = 1;
+let itemsPerPage = 5;
+
+fetch("attendance.json")
+  .then(function(response) {
+    if (!response.ok) {
+      throw new Error("Could not load attendance.json");
+    }
+    return response.json();
+  })
+  .then(function(data) {
+    allAttendance = data;
+    document.getElementById("loadingMsg").style.display = "none";
+    document.getElementById("attendanceTable").style.display = "table";
+
+    /* overall average is always based on the FULL list, not the filtered/paged one */
+    let total = 0;
+    for (let i = 0; i < allAttendance.length; i++) {
+      total = total + allAttendance[i].attendance;
+    }
+    let average = total / allAttendance.length;
+    document.getElementById("avgResult").textContent =
+      "Average Attendance: " + average.toFixed(2) + "%";
+
+    updateList();
+  })
+  .catch(function(error) {
+    document.getElementById("loadingMsg").style.display = "none";
+    let errorMsg = document.getElementById("errorMsg");
+    errorMsg.style.display = "block";
+    errorMsg.textContent = "Error loading attendance. Please try again later.";
+    console.log(error);
+  });
+
+function updateList() {
+  let searchValue = document.getElementById("searchBox").value.toLowerCase();
+  let typeValue = document.getElementById("typeFilter").value;
+  let rangeValue = document.getElementById("rangeFilter").value;
+  let sortValue = document.getElementById("sortBy").value;
+
+  let filtered = allAttendance.filter(function(item) {
+    let matchesSearch = item.subject.toLowerCase().includes(searchValue);
+    let matchesType = typeValue === "all" || item.type === typeValue;
+
+    let matchesRange = true;
+    if (rangeValue === "above75") {
+      matchesRange = item.attendance >= 75;
+    } else if (rangeValue === "below75") {
+      matchesRange = item.attendance < 75;
+    }
+
+    return matchesSearch && matchesType && matchesRange;
+  });
+
+  if (sortValue === "subjectAZ") {
+    filtered.sort(function(a, b) {
+      return a.subject.localeCompare(b.subject);
+    });
+  } else if (sortValue === "attendanceHigh") {
+    filtered.sort(function(a, b) {
+      return b.attendance - a.attendance;
+    });
+  } else if (sortValue === "attendanceLow") {
+    filtered.sort(function(a, b) {
+      return a.attendance - b.attendance;
+    });
+  }
+
+  currentPage = 1;
+  renderPage(filtered);
+}
+
+function renderPage(filteredList) {
+  let tbody = document.getElementById("attendanceBody");
+  let noResultsMsg = document.getElementById("noResultsMsg");
+  let pagination = document.getElementById("pagination");
+  let table = document.getElementById("attendanceTable");
+
+  tbody.innerHTML = "";
+
+  if (filteredList.length === 0) {
+    noResultsMsg.style.display = "block";
+    pagination.style.display = "none";
+    table.style.display = "none";
+    return;
+  } else {
+    noResultsMsg.style.display = "none";
+    table.style.display = "table";
+  }
+
+  let totalPages = Math.ceil(filteredList.length / itemsPerPage);
+  let startIndex = (currentPage - 1) * itemsPerPage;
+  let endIndex = startIndex + itemsPerPage;
+  let itemsForThisPage = filteredList.slice(startIndex, endIndex);
+
+  for (let i = 0; i < itemsForThisPage.length; i++) {
+    let item = itemsForThisPage[i];
+
+    let row = document.createElement("tr");
+    row.innerHTML =
+      "<td>" + item.subject + "</td>" +
+      "<td>" + item.type + "</td>" +
+      "<td>" + item.attendance + "%</td>";
+
+    tbody.appendChild(row);
+  }
+
+  pagination.style.display = "flex";
+  document.getElementById("pageInfo").textContent =
+    "Page " + currentPage + " of " + totalPages;
+
+  document.getElementById("prevBtn").disabled = (currentPage === 1);
+  document.getElementById("nextBtn").disabled = (currentPage === totalPages);
+
+  window.currentFilteredList = filteredList;
+}
+
+document.getElementById("searchBox").addEventListener("keyup", updateList);
+document.getElementById("typeFilter").addEventListener("change", updateList);
+document.getElementById("rangeFilter").addEventListener("change", updateList);
+document.getElementById("sortBy").addEventListener("change", updateList);
+
+document.getElementById("prevBtn").addEventListener("click", function() {
+  if (currentPage > 1) {
+    currentPage = currentPage - 1;
+    renderPage(window.currentFilteredList);
+  }
+});
+
+document.getElementById("nextBtn").addEventListener("click", function() {
+  let totalPages = Math.ceil(window.currentFilteredList.length / itemsPerPage);
+  if (currentPage < totalPages) {
+    currentPage = currentPage + 1;
+    renderPage(window.currentFilteredList);
+  }
+});
+</script>
+
+</body>
+</html>

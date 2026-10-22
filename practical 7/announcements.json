@@ -1,0 +1,17 @@
+[
+  { "id": 1, "title": "Semester Exam Schedule Released", "message": "Semester exam starts next month. Check the exam cell notice board for the detailed timetable.", "category": "Exam", "date": "2026-08-01" },
+  { "id": 2, "title": "Assignment Submission Deadline", "message": "Submit the Web Development assignment before the deadline. Late submissions will not be accepted.", "category": "Assignment", "date": "2026-08-05" },
+  { "id": 3, "title": "Independence Day Holiday", "message": "College will remain closed on account of Independence Day.", "category": "Holiday", "date": "2026-08-15" },
+  { "id": 4, "title": "Guest Lecture on AI", "message": "A guest lecture on Artificial Intelligence will be held in the seminar hall at 11 AM.", "category": "Event", "date": "2026-08-18" },
+  { "id": 5, "title": "Library Book Return Reminder", "message": "Students are requested to return library books before the semester exam begins.", "category": "General", "date": "2026-08-20" },
+  { "id": 6, "title": "Sports Day Announcement", "message": "Annual sports day will be organized on the college ground. All students are encouraged to participate.", "category": "Event", "date": "2026-08-22" },
+  { "id": 7, "title": "DSA Assignment Reminder", "message": "DSA assignment submission date is approaching. Submit well-commented code with sample outputs.", "category": "Assignment", "date": "2026-08-10" },
+  { "id": 8, "title": "Mid-Semester Exam Notice", "message": "Mid-semester exams for all branches will begin from the last week of August.", "category": "Exam", "date": "2026-08-25" },
+  { "id": 9, "title": "Fee Payment Reminder", "message": "Students who have not paid semester fees are requested to clear dues before the deadline.", "category": "General", "date": "2026-08-12" },
+  { "id": 10, "title": "Ganesh Chaturthi Holiday", "message": "College will remain closed for Ganesh Chaturthi festival.", "category": "Holiday", "date": "2026-09-05" },
+  { "id": 11, "title": "Coding Club Meetup", "message": "Coding club members are invited to a meetup to discuss the upcoming hackathon.", "category": "Event", "date": "2026-08-28" },
+  { "id": 12, "title": "Web Development Practical Exam", "message": "Practical exam for Web Development Frameworks subject will be conducted in the lab.", "category": "Exam", "date": "2026-09-02" },
+  { "id": 13, "title": "Scholarship Form Submission", "message": "Eligible students should submit scholarship application forms to the accounts office.", "category": "General", "date": "2026-08-14" },
+  { "id": 14, "title": "Mathematics Assignment Posted", "message": "New assignment for Mathematics has been posted. Check the assignments page for details.", "category": "Assignment", "date": "2026-08-08" },
+  { "id": 15, "title": "Diwali Vacation Notice", "message": "College will remain closed for Diwali vacation. Classes resume after the break.", "category": "Holiday", "date": "2026-10-10" }
+]

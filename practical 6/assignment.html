@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignments</title>
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background-color: #f2f2f2;
+  color: #222;
+}
+
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #eee;
+}
+
+body.dark-theme main {
+  background-color: #2b2b2b;
+}
+
+body.dark-theme article {
+  background-color: #3a3a3a;
+}
+
+body.dark-theme .modal-box {
+  background-color: #3a3a3a;
+  color: #eee;
+}
+
+body.dark-theme select,
+body.dark-theme input[type="text"] {
+  background-color: #3a3a3a;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#hamburger {
+  display: none;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+#themeToggle {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a {
+  color: white;
+  margin-right: 10px;
+}
+
+main {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+#assignmentCount {
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.controls input[type="text"],
+.controls select {
+  padding: 6px;
+  font-size: 14px;
+}
+
+#searchBox {
+  flex: 1 1 200px;
+}
+
+#loadingMsg, #errorMsg, #noResultsMsg {
+  padding: 10px 0;
+}
+
+#errorMsg {
+  color: red;
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+article {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 15px;
+  flex: 1 1 220px;
+}
+
+article .item-meta {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+body.dark-theme article .item-meta {
+  color: #bbb;
+}
+
+article button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-box {
+  background-color: white;
+  padding: 25px;
+  border-radius: 6px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-box button {
+  margin-top: 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+#pagination button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#pagination button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+  main {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+  .card-row {
+    flex-direction: column;
+  }
+
+  #hamburger {
+    display: inline-block;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  nav.nav-open {
+    display: flex;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-left">
+<button id="hamburger">&#9776;</button>
+<h1>Assignments</h1>
+</div>
+<button id="themeToggle">Dark Mode</button>
+</header>
+
+<nav id="navMenu">
+<a href="index.html">Home</a>
+</nav>
+
+<main>
+<p id="assignmentCount"></p>
+
+<div class="controls">
+  <input type="text" id="searchBox" placeholder="Search assignments...">
+
+  <select id="categoryFilter">
+    <option value="all">All Categories</option>
+    <option value="Core">Core</option>
+    <option value="Lab">Lab</option>
+    <option value="Elective">Elective</option>
+  </select>
+
+  <select id="sortBy">
+    <option value="dateNearest">Due Date: Nearest First</option>
+    <option value="dateFarthest">Due Date: Farthest First</option>
+    <option value="titleAZ">Title: A-Z</option>
+  </select>
+</div>
+
+<p id="loadingMsg">Loading assignments...</p>
+<p id="errorMsg" style="display:none;"></p>
+<p id="noResultsMsg" style="display:none;">No assignments match your search/filter.</p>
+
+<div class="card-row" id="cardRow"></div>
+
+<div id="pagination" style="display:none;">
+  <button id="prevBtn">Previous</button>
+  <span id="pageInfo"></span>
+  <button id="nextBtn">Next</button>
+</div>
+
+</main>
+
+<div class="modal-overlay" id="detailsModal">
+<div class="modal-box">
+<h2 id="modalTitle"></h2>
+<p id="modalDetail"></p>
+<button id="closeModalBtn">Close</button>
+</div>
+</div>
+
+<footer>
+<hr>
+<p>Student Hub</p>
+</footer>
+
+<script>
+let hamburger = document.getElementById("hamburger");
+let navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", function() {
+  navMenu.classList.toggle("nav-open");
+});
+
+let themeBtn = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-theme");
+  themeBtn.textContent = "Light Mode";
+}
+
+themeBtn.addEventListener("click", function() {
+  document.body.classList.toggle("dark-theme");
+
+  if (document.body.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+    themeBtn.textContent = "Light Mode";
+  } else {
+    localStorage.setItem("theme", "light");
+    themeBtn.textContent = "Dark Mode";
+  }
+});
+
+let modal = document.getElementById("detailsModal");
+let modalTitle = document.getElementById("modalTitle");
+let modalDetail = document.getElementById("modalDetail");
+let closeModalBtn = document.getElementById("closeModalBtn");
+
+closeModalBtn.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+modal.addEventListener("click", function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+let allAssignments = [];
+let currentPage = 1;
+let itemsPerPage = 4;
+
+fetch("assignments.json")
+  .then(function(response) {
+    if (!response.ok) {
+      throw new Error("Could not load assignments.json");
+    }
+    return response.json();
+  })
+  .then(function(data) {
+    allAssignments = data;
+    document.getElementById("loadingMsg").style.display = "none";
+    updateList();
+  })
+  .catch(function(error) {
+    document.getElementById("loadingMsg").style.display = "none";
+    let errorMsg = document.getElementById("errorMsg");
+    errorMsg.style.display = "block";
+    errorMsg.textContent = "Error loading assignments. Please try again later.";
+    console.log(error);
+  });
+
+function updateList() {
+  let searchValue = document.getElementById("searchBox").value.toLowerCase();
+  let categoryValue = document.getElementById("categoryFilter").value;
+  let sortValue = document.getElementById("sortBy").value;
+
+  let filtered = allAssignments.filter(function(item) {
+    let matchesSearch = item.title.toLowerCase().includes(searchValue);
+    let matchesCategory = categoryValue === "all" || item.category === categoryValue;
+    return matchesSearch && matchesCategory;
+  });
+
+  if (sortValue === "dateNearest") {
+    filtered.sort(function(a, b) {
+      return new Date(a.submissionDate) - new Date(b.submissionDate);
+    });
+  } else if (sortValue === "dateFarthest") {
+    filtered.sort(function(a, b) {
+      return new Date(b.submissionDate) - new Date(a.submissionDate);
+    });
+  } else if (sortValue === "titleAZ") {
+    filtered.sort(function(a, b) {
+      return a.title.localeCompare(b.title);
+    });
+  }
+
+  currentPage = 1;
+  renderPage(filtered);
+}
+
+function renderPage(filteredList) {
+  let cardRow = document.getElementById("cardRow");
+  let noResultsMsg = document.getElementById("noResultsMsg");
+  let pagination = document.getElementById("pagination");
+
+  cardRow.innerHTML = "";
+
+  document.getElementById("assignmentCount").textContent =
+    "Total Assignments: " + filteredList.length;
+
+  if (filteredList.length === 0) {
+    noResultsMsg.style.display = "block";
+    pagination.style.display = "none";
+    return;
+  } else {
+    noResultsMsg.style.display = "none";
+  }
+
+  let totalPages = Math.ceil(filteredList.length / itemsPerPage);
+  let startIndex = (currentPage - 1) * itemsPerPage;
+  let endIndex = startIndex + itemsPerPage;
+  let itemsForThisPage = filteredList.slice(startIndex, endIndex);
+
+  for (let i = 0; i < itemsForThisPage.length; i++) {
+    let item = itemsForThisPage[i];
+
+    let article = document.createElement("article");
+    article.innerHTML =
+      "<h2>" + item.title + "</h2>" +
+      "<p>Submission Date : " + item.submissionDate + "</p>" +
+      '<div class="item-meta">' + item.category + "</div>" +
+      '<button class="detailsBtn" data-title="' + item.title + '" data-detail="' + item.detail + '">View Details</button>';
+
+    cardRow.appendChild(article);
+  }
+
+  let detailButtons = document.querySelectorAll(".detailsBtn");
+  detailButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+      modalTitle.textContent = button.getAttribute("data-title");
+      modalDetail.textContent = button.getAttribute("data-detail");
+      modal.style.display = "flex";
+    });
+  });
+
+  pagination.style.display = "flex";
+  document.getElementById("pageInfo").textContent =
+    "Page " + currentPage + " of " + totalPages;
+
+  document.getElementById("prevBtn").disabled = (currentPage === 1);
+  document.getElementById("nextBtn").disabled = (currentPage === totalPages);
+
+  window.currentFilteredList = filteredList;
+}
+
+document.getElementById("searchBox").addEventListener("keyup", updateList);
+document.getElementById("categoryFilter").addEventListener("change", updateList);
+document.getElementById("sortBy").addEventListener("change", updateList);
+
+document.getElementById("prevBtn").addEventListener("click", function() {
+  if (currentPage > 1) {
+    currentPage = currentPage - 1;
+    renderPage(window.currentFilteredList);
+  }
+});
+
+document.getElementById("nextBtn").addEventListener("click", function() {
+  let totalPages = Math.ceil(window.currentFilteredList.length / itemsPerPage);
+  if (currentPage < totalPages) {
+    currentPage = currentPage + 1;
+    renderPage(window.currentFilteredList);
+  }
+});
+</script>
+
+</body>
+</html>

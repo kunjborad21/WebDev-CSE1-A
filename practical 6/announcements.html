@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Announcements</title>
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background-color: #f2f2f2;
+  color: #222;
+}
+
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #eee;
+}
+
+body.dark-theme main {
+  background-color: #2b2b2b;
+}
+
+body.dark-theme main ul li {
+  background-color: #3a3a3a;
+}
+
+body.dark-theme #notifBanner {
+  background-color: #4a4423;
+  border-color: #7a6a2f;
+  color: #eee;
+}
+
+body.dark-theme select,
+body.dark-theme input[type="text"] {
+  background-color: #3a3a3a;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#hamburger {
+  display: none;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+#themeToggle {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a {
+  color: white;
+  margin-right: 10px;
+}
+
+main {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+#notifBanner {
+  background-color: #fff3cd;
+  border: 1px solid #ffe08a;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#closeBanner {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ---------- Practical 6: controls bar (search, filter, sort) ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.controls input[type="text"],
+.controls select {
+  padding: 6px;
+  font-size: 14px;
+}
+
+#searchBox {
+  flex: 1 1 200px;
+}
+
+main ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+main ul li {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 12px 15px;
+}
+
+main ul li .item-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+main ul li .item-meta {
+  font-size: 12px;
+  color: #666;
+  margin-top: 6px;
+}
+
+body.dark-theme main ul li .item-meta {
+  color: #bbb;
+}
+
+#loadingMsg, #errorMsg, #noResultsMsg {
+  padding: 10px 0;
+}
+
+#errorMsg {
+  color: red;
+}
+
+/* ---------- Practical 6: pagination controls ---------- */
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#pagination button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#pagination button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+  main {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  #hamburger {
+    display: inline-block;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  nav.nav-open {
+    display: flex;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-left">
+<button id="hamburger">&#9776;</button>
+<h1>Announcements</h1>
+</div>
+<button id="themeToggle">Dark Mode</button>
+</header>
+
+<nav id="navMenu">
+<a href="index.html">Home</a>
+</nav>
+
+<main>
+<div id="notifBanner">
+<span id="bannerText"></span>
+<button id="closeBanner">&times;</button>
+</div>
+
+<!-- Practical 6: search box, category filter, and sort dropdown -->
+<div class="controls">
+  <input type="text" id="searchBox" placeholder="Search announcements...">
+
+  <select id="categoryFilter">
+    <option value="all">All Categories</option>
+    <option value="Exam">Exam</option>
+    <option value="Assignment">Assignment</option>
+    <option value="Holiday">Holiday</option>
+    <option value="Event">Event</option>
+    <option value="General">General</option>
+  </select>
+
+  <select id="sortBy">
+    <option value="dateNewest">Date: Newest First</option>
+    <option value="dateOldest">Date: Oldest First</option>
+    <option value="titleAZ">Title: A-Z</option>
+  </select>
+</div>
+
+<!-- Practical 6: messages shown while fetching or when something is wrong -->
+<p id="loadingMsg">Loading announcements...</p>
+<p id="errorMsg" style="display:none;"></p>
+<p id="noResultsMsg" style="display:none;">No announcements match your search/filter.</p>
+
+<!-- Practical 6: this list is now built by JavaScript, not typed by hand -->
+<ul id="announcementList"></ul>
+
+<!-- Practical 6: pagination buttons -->
+<div id="pagination" style="display:none;">
+  <button id="prevBtn">Previous</button>
+  <span id="pageInfo"></span>
+  <button id="nextBtn">Next</button>
+</div>
+
+</main>
+
+<footer>
+<hr>
+<p>Student Hub</p>
+</footer>
+
+<script>
+/* ---------- Hamburger menu ---------- */
+let hamburger = document.getElementById("hamburger");
+let navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", function() {
+  navMenu.classList.toggle("nav-open");
+});
+
+/* ---------- Light / Dark theme switcher (remembered using localStorage) ---------- */
+let themeBtn = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-theme");
+  themeBtn.textContent = "Light Mode";
+}
+
+themeBtn.addEventListener("click", function() {
+  document.body.classList.toggle("dark-theme");
+
+  if (document.body.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+    themeBtn.textContent = "Light Mode";
+  } else {
+    localStorage.setItem("theme", "light");
+    themeBtn.textContent = "Dark Mode";
+  }
+});
+
+/* ---------- Notification banner close button ---------- */
+let banner = document.getElementById("notifBanner");
+let closeBanner = document.getElementById("closeBanner");
+
+closeBanner.addEventListener("click", function() {
+  banner.style.display = "none";
+});
+
+
+/* =========================================================
+   PRACTICAL 6: Fetch JSON data, then search / filter / sort / paginate
+   ========================================================= */
+
+/* this variable will hold ALL the announcements once fetched from the JSON file */
+let allAnnouncements = [];
+
+/* pagination settings */
+let currentPage = 1;
+let itemsPerPage = 5;
+
+/* Step 1: fetch the JSON file */
+fetch("announcements.json")
+  .then(function(response) {
+    // if the file could not be loaded, throw an error so .catch() below runs
+    if (!response.ok) {
+      throw new Error("Could not load announcements.json");
+    }
+    return response.json();
+  })
+  .then(function(data) {
+    // save the data so other functions (search/filter/sort) can use it
+    allAnnouncements = data;
+
+    // hide the loading message, we are ready to show data now
+    document.getElementById("loadingMsg").style.display = "none";
+
+    // show the total count in the notification banner
+    document.getElementById("bannerText").textContent =
+      "You have " + allAnnouncements.length + " new announcements!";
+
+    // do the first render
+    updateList();
+  })
+  .catch(function(error) {
+    // this runs if fetch failed (e.g. wrong file name, file missing)
+    document.getElementById("loadingMsg").style.display = "none";
+    let errorMsg = document.getElementById("errorMsg");
+    errorMsg.style.display = "block";
+    errorMsg.textContent = "Error loading announcements. Please try again later.";
+    console.log(error);
+  });
+
+
+/* Step 2: this function applies search + filter + sort,
+   then calls renderPage() to actually draw the list on screen */
+function updateList() {
+  let searchValue = document.getElementById("searchBox").value.toLowerCase();
+  let categoryValue = document.getElementById("categoryFilter").value;
+  let sortValue = document.getElementById("sortBy").value;
+
+  /* ---- filter step ---- */
+  let filtered = allAnnouncements.filter(function(item) {
+    let matchesSearch =
+      item.title.toLowerCase().includes(searchValue) ||
+      item.message.toLowerCase().includes(searchValue);
+
+    let matchesCategory =
+      categoryValue === "all" || item.category === categoryValue;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  /* ---- sort step ---- */
+  if (sortValue === "dateNewest") {
+    filtered.sort(function(a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+  } else if (sortValue === "dateOldest") {
+    filtered.sort(function(a, b) {
+      return new Date(a.date) - new Date(b.date);
+    });
+  } else if (sortValue === "titleAZ") {
+    filtered.sort(function(a, b) {
+      return a.title.localeCompare(b.title);
+    });
+  }
+
+  /* whenever the search/filter/sort changes, go back to page 1 */
+  currentPage = 1;
+
+  renderPage(filtered);
+}
+
+/* Step 3: this function shows only ONE page worth of results (pagination),
+   and also builds the actual <li> elements in the HTML */
+function renderPage(filteredList) {
+  let listElement = document.getElementById("announcementList");
+  let noResultsMsg = document.getElementById("noResultsMsg");
+  let pagination = document.getElementById("pagination");
+
+  // clear old list items before drawing new ones
+  listElement.innerHTML = "";
+
+  if (filteredList.length === 0) {
+    noResultsMsg.style.display = "block";
+    pagination.style.display = "none";
+    return;
+  } else {
+    noResultsMsg.style.display = "none";
+  }
+
+  // work out which items belong on the current page
+  let totalPages = Math.ceil(filteredList.length / itemsPerPage);
+  let startIndex = (currentPage - 1) * itemsPerPage;
+  let endIndex = startIndex + itemsPerPage;
+  let itemsForThisPage = filteredList.slice(startIndex, endIndex);
+
+  // build one <li> for each announcement on this page
+  for (let i = 0; i < itemsForThisPage.length; i++) {
+    let item = itemsForThisPage[i];
+
+    let li = document.createElement("li");
+    li.innerHTML =
+      '<div class="item-title">' + item.title + '</div>' +
+      '<div>' + item.message + '</div>' +
+      '<div class="item-meta">' + item.category + ' | ' + item.date + '</div>';
+
+    listElement.appendChild(li);
+  }
+
+  // show pagination controls and update the Prev/Next buttons
+  pagination.style.display = "flex";
+  document.getElementById("pageInfo").textContent =
+    "Page " + currentPage + " of " + totalPages;
+
+  document.getElementById("prevBtn").disabled = (currentPage === 1);
+  document.getElementById("nextBtn").disabled = (currentPage === totalPages);
+
+  // save the currently filtered list so Prev/Next buttons can reuse it
+  window.currentFilteredList = filteredList;
+}
+
+/* Step 4: hook up search box, filter dropdown, and sort dropdown
+   so the list updates live as the user changes them */
+document.getElementById("searchBox").addEventListener("keyup", updateList);
+document.getElementById("categoryFilter").addEventListener("change", updateList);
+document.getElementById("sortBy").addEventListener("change", updateList);
+
+/* Step 5: Previous / Next button clicks */
+document.getElementById("prevBtn").addEventListener("click", function() {
+  if (currentPage > 1) {
+    currentPage = currentPage - 1;
+    renderPage(window.currentFilteredList);
+  }
+});
+
+document.getElementById("nextBtn").addEventListener("click", function() {
+  let totalPages = Math.ceil(window.currentFilteredList.length / itemsPerPage);
+  if (currentPage < totalPages) {
+    currentPage = currentPage + 1;
+    renderPage(window.currentFilteredList);
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration</title>
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background-color: #f2f2f2;
+  color: #222;
+}
+
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #eee;
+}
+
+body.dark-theme main {
+  background-color: #2b2b2b;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#hamburger {
+  display: none;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+#themeToggle {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a {
+  color: white;
+  margin-right: 10px;
+}
+
+main {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+label {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+input, select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 4px;
+  padding: 5px;
+}
+
+/* error text shown below each field */
+.error {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 8px;
+  display: block;
+  min-height: 16px;
+}
+
+/* radio buttons row for gender */
+.gender-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 4px;
+}
+
+.gender-row label {
+  font-weight: normal;
+  margin-top: 0;
+}
+
+.terms-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.terms-row input {
+  width: auto;
+  margin-bottom: 0;
+}
+
+.terms-row label {
+  margin-top: 0;
+  font-weight: normal;
+}
+
+/* password strength text */
+#strengthText {
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+  main {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+  form {
+    max-width: 100%;
+  }
+
+  #hamburger {
+    display: inline-block;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  nav.nav-open {
+    display: flex;
+  }
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-left">
+<button id="hamburger">&#9776;</button>
+<h1>Student Registration</h1>
+</div>
+<button id="themeToggle">Dark Mode</button>
+</header>
+
+<nav id="navMenu">
+<a href="index.html">Home</a>
+</nav>
+
+<main>
+<form id="registerForm" novalidate>
+
+<label for="name">Name</label>
+<input type="text" id="name">
+<span class="error" id="nameError"></span>
+
+<label for="email">Email</label>
+<input type="email" id="email">
+<span class="error" id="emailError"></span>
+
+<label for="mobile">Mobile</label>
+<input type="tel" id="mobile">
+<span class="error" id="mobileError"></span>
+
+<label for="course">Course</label>
+<select id="course">
+  <option value="">-- Select Course --</option>
+  <option value="BCA">BCA</option>
+  <option value="BTech">BTech</option>
+  <option value="MCA">MCA</option>
+</select>
+<span class="error" id="courseError"></span>
+
+<label for="year">Year</label>
+<select id="year">
+  <option value="">-- Select Year --</option>
+  <option value="1">1st Year</option>
+  <option value="2">2nd Year</option>
+  <option value="3">3rd Year</option>
+  <option value="4">4th Year</option>
+</select>
+<span class="error" id="yearError"></span>
+
+<label>Gender</label>
+<div class="gender-row">
+  <label><input type="radio" name="gender" value="Male"> Male</label>
+  <label><input type="radio" name="gender" value="Female"> Female</label>
+  <label><input type="radio" name="gender" value="Other"> Other</label>
+</div>
+<span class="error" id="genderError"></span>
+
+<label for="password">Password</label>
+<input type="password" id="password">
+<span id="strengthText"></span>
+<span class="error" id="passwordError"></span>
+
+<label for="confirmPassword">Confirm Password</label>
+<input type="password" id="confirmPassword">
+<span class="error" id="confirmPasswordError"></span>
+
+<div class="terms-row">
+  <input type="checkbox" id="terms">
+  <label for="terms">I agree to the terms and conditions</label>
+</div>
+<span class="error" id="termsError"></span>
+
+<input type="submit" value="Register">
+</form>
+</main>
+
+<footer>
+<hr>
+<p>Student Hub</p>
+</footer>
+
+<script>
+/* ---------- Hamburger menu (from Practical 4) ---------- */
+let hamburger = document.getElementById("hamburger");
+let navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", function() {
+  navMenu.classList.toggle("nav-open");
+});
+
+/* ---------- Light / Dark theme switcher (from Practical 4) ---------- */
+let themeBtn = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-theme");
+  themeBtn.textContent = "Light Mode";
+}
+
+themeBtn.addEventListener("click", function() {
+  document.body.classList.toggle("dark-theme");
+
+  if (document.body.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+    themeBtn.textContent = "Light Mode";
+  } else {
+    localStorage.setItem("theme", "light");
+    themeBtn.textContent = "Dark Mode";
+  }
+});
+
+/* ---------- Practical 5: Registration form validation ---------- */
+
+/* regex patterns - kept simple for learning purpose */
+let nameRegex = /^[a-zA-Z ]{3,30}$/;
+let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let mobileRegex = /^[0-9]{10}$/;
+
+/* this function checks password strength and shows Weak/Medium/Strong */
+function checkPasswordStrength() {
+  let password = document.getElementById("password").value;
+  let strengthText = document.getElementById("strengthText");
+
+  let strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{8,}$/;
+  let mediumRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,}$/;
+
+  if (password === "") {
+    strengthText.textContent = "";
+  } else if (strongRegex.test(password)) {
+    strengthText.textContent = "Strength: Strong";
+    strengthText.style.color = "green";
+  } else if (mediumRegex.test(password)) {
+    strengthText.textContent = "Strength: Medium";
+    strengthText.style.color = "orange";
+  } else {
+    strengthText.textContent = "Strength: Weak";
+    strengthText.style.color = "red";
+  }
+}
+
+/* run strength check as user types (Intermediate requirement) */
+document.getElementById("password").addEventListener("keyup", checkPasswordStrength);
+
+/* this function clears all old error messages before checking again */
+function clearErrors() {
+  let errorSpans = document.getElementsByClassName("error");
+  for (let i = 0; i < errorSpans.length; i++) {
+    errorSpans[i].textContent = "";
+  }
+}
+
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  clearErrors();
+
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let mobile = document.getElementById("mobile").value.trim();
+  let course = document.getElementById("course").value;
+  let year = document.getElementById("year").value;
+  let password = document.getElementById("password").value;
+  let confirmPassword = document.getElementById("confirmPassword").value;
+  let terms = document.getElementById("terms").checked;
+
+  /* check if a gender radio button is selected */
+  let genderOptions = document.getElementsByName("gender");
+  let genderSelected = false;
+  for (let i = 0; i < genderOptions.length; i++) {
+    if (genderOptions[i].checked) {
+      genderSelected = true;
+    }
+  }
+
+  let isValid = true; // this flag will become false if any check fails
+
+  /* Name check */
+  if (name === "") {
+    document.getElementById("nameError").textContent = "Name is required.";
+    isValid = false;
+  } else if (!nameRegex.test(name)) {
+    document.getElementById("nameError").textContent = "Enter a valid name (letters only, 3-30 characters).";
+    isValid = false;
+  }
+
+  /* Email check */
+  if (email === "") {
+    document.getElementById("emailError").textContent = "Email is required.";
+    isValid = false;
+  } else if (!emailRegex.test(email)) {
+    document.getElementById("emailError").textContent = "Enter a valid email address.";
+    isValid = false;
+  }
+
+  /* Mobile check */
+  if (mobile === "") {
+    document.getElementById("mobileError").textContent = "Mobile number is required.";
+    isValid = false;
+  } else if (!mobileRegex.test(mobile)) {
+    document.getElementById("mobileError").textContent = "Enter a valid 10 digit mobile number.";
+    isValid = false;
+  }
+
+  /* Course check */
+  if (course === "") {
+    document.getElementById("courseError").textContent = "Please select a course.";
+    isValid = false;
+  }
+
+  /* Year check */
+  if (year === "") {
+    document.getElementById("yearError").textContent = "Please select a year.";
+    isValid = false;
+  }
+
+  /* Gender check */
+  if (!genderSelected) {
+    document.getElementById("genderError").textContent = "Please select gender.";
+    isValid = false;
+  }
+
+  /* Password check */
+  if (password === "") {
+    document.getElementById("passwordError").textContent = "Password is required.";
+    isValid = false;
+  } else if (password.length < 6) {
+    document.getElementById("passwordError").textContent = "Password should be at least 6 characters long.";
+    isValid = false;
+  }
+
+  /* Confirm Password check */
+  if (confirmPassword === "") {
+    document.getElementById("confirmPasswordError").textContent = "Please confirm your password.";
+    isValid = false;
+  } else if (password !== confirmPassword) {
+    document.getElementById("confirmPasswordError").textContent = "Passwords do not match.";
+    isValid = false;
+  }
+
+  /* Terms check */
+  if (!terms) {
+    document.getElementById("termsError").textContent = "You must agree to the terms and conditions.";
+    isValid = false;
+  }
+
+  /* if everything is fine, show success message */
+  if (isValid) {
+    alert("Registration successful! Welcome " + name);
+    document.getElementById("registerForm").reset();
+    document.getElementById("strengthText").textContent = "";
+  }
+});
+</script>
+
+</body>
+</html>

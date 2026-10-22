@@ -1,0 +1,17 @@
+[
+  { "id": 1, "subject": "Web Development", "attendance": 90, "type": "Theory" },
+  { "id": 2, "subject": "DSA", "attendance": 88, "type": "Theory" },
+  { "id": 3, "subject": "Mathematics", "attendance": 95, "type": "Theory" },
+  { "id": 4, "subject": "Operating System", "attendance": 82, "type": "Theory" },
+  { "id": 5, "subject": "DBMS Lab", "attendance": 78, "type": "Lab" },
+  { "id": 6, "subject": "Python Programming", "attendance": 91, "type": "Theory" },
+  { "id": 7, "subject": "Computer Networks", "attendance": 73, "type": "Theory" },
+  { "id": 8, "subject": "Java Programming Lab", "attendance": 85, "type": "Lab" },
+  { "id": 9, "subject": "Software Engineering", "attendance": 89, "type": "Theory" },
+  { "id": 10, "subject": "PHP Programming", "attendance": 70, "type": "Theory" },
+  { "id": 11, "subject": "MySQL Lab", "attendance": 92, "type": "Lab" },
+  { "id": 12, "subject": "JavaScript Practice", "attendance": 87, "type": "Theory" },
+  { "id": 13, "subject": "Data Structures Lab", "attendance": 76, "type": "Lab" },
+  { "id": 14, "subject": "System Design Basics", "attendance": 94, "type": "Theory" },
+  { "id": 15, "subject": "Web Development Framework", "attendance": 96, "type": "Theory" }
+]

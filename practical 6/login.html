@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background-color: #f2f2f2;
+  color: #222;
+}
+
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #eee;
+}
+
+body.dark-theme main {
+  background-color: #2b2b2b;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#hamburger {
+  display: none;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+#themeToggle {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav a {
+  color: white;
+  margin-right: 10px;
+}
+
+main {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+  main {
+    margin: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 20px;
+  }
+  form {
+    max-width: 100%;
+  }
+
+  #hamburger {
+    display: inline-block;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  nav.nav-open {
+    display: flex;
+  }
+}
+
+input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-left">
+<button id="hamburger">&#9776;</button>
+<h1>Student Login</h1>
+</div>
+<button id="themeToggle">Dark Mode</button>
+</header>
+
+<nav id="navMenu">
+<a href="index.html">Home</a>
+</nav>
+
+<main>
+<form id="loginForm">
+<label>Email</label>
+<input type="email" id="email">
+
+<label>Password</label>
+<input type="password" id="password">
+
+<input type="submit" value="Login">
+</form>
+
+<p>
+<a href="forgotpasword.html">Forgot Password?</a>
+</p>
+</main>
+
+<footer>
+<hr>
+<p>Student Hub</p>
+</footer>
+
+<script>
+/* ---------- Hamburger menu ---------- */
+let hamburger = document.getElementById("hamburger");
+let navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", function() {
+  navMenu.classList.toggle("nav-open");
+});
+
+/* ---------- Light / Dark theme switcher (remembered using localStorage) ---------- */
+let themeBtn = document.getElementById("themeToggle");
+
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-theme");
+  themeBtn.textContent = "Light Mode";
+}
+
+themeBtn.addEventListener("click", function() {
+  document.body.classList.toggle("dark-theme");
+
+  if (document.body.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+    themeBtn.textContent = "Light Mode";
+  } else {
+    localStorage.setItem("theme", "light");
+    themeBtn.textContent = "Dark Mode";
+  }
+});
+
+/* ---------- Login form validation ---------- */
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+
+  if (email === "" || password === "") {
+    alert("Please fill in both Email and Password.");
+  } else {
+    alert("Login successful! Welcome " + email);
+  }
+});
+</script>
+
+</body>
+</html>

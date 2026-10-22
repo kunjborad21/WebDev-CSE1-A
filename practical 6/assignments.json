@@ -1,0 +1,17 @@
+[
+  { "id": 1, "title": "Web Development", "submissionDate": "2026-08-10", "category": "Core", "detail": "Build a responsive Student Hub portal using HTML, CSS, and JavaScript. Submit the source code as a ZIP file." },
+  { "id": 2, "title": "DSA", "submissionDate": "2026-08-15", "category": "Core", "detail": "Solve the given 10 array and linked-list problems and submit well-commented code with sample outputs." },
+  { "id": 3, "title": "Mathematics", "submissionDate": "2026-08-12", "category": "Core", "detail": "Solve the assignment on matrices and determinants and submit handwritten scanned copy." },
+  { "id": 4, "title": "Operating System", "submissionDate": "2026-08-18", "category": "Core", "detail": "Write a report comparing process scheduling algorithms with examples." },
+  { "id": 5, "title": "DBMS Lab", "submissionDate": "2026-08-20", "category": "Lab", "detail": "Create ER diagram and normalize the given schema up to 3NF." },
+  { "id": 6, "title": "Python Programming", "submissionDate": "2026-08-22", "category": "Elective", "detail": "Write Python programs demonstrating file handling and exception handling." },
+  { "id": 7, "title": "Computer Networks", "submissionDate": "2026-08-25", "category": "Core", "detail": "Prepare a report on OSI vs TCP/IP model with real-world examples." },
+  { "id": 8, "title": "Java Programming Lab", "submissionDate": "2026-08-27", "category": "Lab", "detail": "Implement inheritance and polymorphism examples in Java and submit source files." },
+  { "id": 9, "title": "Software Engineering", "submissionDate": "2026-08-29", "category": "Core", "detail": "Prepare SRS document for a sample library management system." },
+  { "id": 10, "title": "PHP Programming", "submissionDate": "2026-09-02", "category": "Elective", "detail": "Create a simple PHP script to process a contact form and store data in a text file." },
+  { "id": 11, "title": "MySQL Lab", "submissionDate": "2026-09-04", "category": "Lab", "detail": "Design and create a normalized database with at least 3 related tables." },
+  { "id": 12, "title": "JavaScript Practice", "submissionDate": "2026-09-06", "category": "Core", "detail": "Write JavaScript functions demonstrating array methods: map, filter, and reduce." },
+  { "id": 13, "title": "Data Structures Lab", "submissionDate": "2026-09-08", "category": "Lab", "detail": "Implement stack and queue using arrays and linked lists in C." },
+  { "id": 14, "title": "System Design Basics", "submissionDate": "2026-09-10", "category": "Elective", "detail": "Prepare a short presentation on client-server architecture." },
+  { "id": 15, "title": "Web Development Framework", "submissionDate": "2026-09-12", "category": "Core", "detail": "Submit the completed StudentHub project with all pages linked correctly." }
+]
